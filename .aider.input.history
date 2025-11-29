@@ -1,0 +1,18 @@
+
+# 2025-11-29 21:30:42.123790
++Code the following app
++```
++a canvas-based falling sand simulation game. The screen acts as a drawing board where the user can paint with different elements selected from a toolbar. Include "Sand" (yellow, falls down and piles up), "Water" (blue, falls and flows sideways to fill containers), "Stone" (grey, completely static and blocks movement), and "Eraser". The simulation must run a loop checking every pixel's state to update positions realistically. Allow the user to draw by clicking and dragging. The background should be dark to make the neon-colored elements pop visually. Make it look fun and colourful styling. 
++Place the canvas to the home page.
++```
++
++Generate an app logo and update the app metadata title and description.
+
+# 2025-11-29 21:30:42.124233
++Code the following app
++```
++a canvas-based falling sand simulation game. The screen acts as a drawing board where the user can paint with different elements selected from a toolbar. Include "Sand" (yellow, falls down and piles up), "Water" (blue, falls and flows sideways to fill containers), "Stone" (grey, completely static and blocks movement), and "Eraser". The simulation must run a loop checking every pixel's state to update positions realistically. Allow the user to draw by clicking and dragging. The background should be dark to make the neon-colored elements pop visually. Make it look fun and colourful styling. 
++Place the canvas to the home page.
++```
++
++Generate an app logo and update the app metadata title and description.
