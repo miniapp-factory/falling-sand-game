@@ -58,3 +58,9 @@
 
 # 2025-12-04 22:15:49.744996
 +Create the water cycle logic. First, interaction: If Fire touches Water, transform the Water into Gas (evaporation). Second, condensation: If rising Gas touches the indestructible Wall border at the top of the canvas, transform it back into Water.
+
+# 2025-12-04 22:35:02.487244
++introduce a Plant element (Bright Green). Plants are static and do not fall. Implement two biological interactions: 1) Growth: If a Plant pixel touches Water, it absorbs the water and grows a new Plant pixel in a random adjacent empty space (simulating roots/branches). 2) Flammability: If a Plant pixel touches Fire, it instantly catches fire and transforms into Fire, allowing the flames to spread rapidly.
+
+# 2025-12-04 22:35:02.487870
++introduce a Plant element (Bright Green). Plants are static and do not fall. Implement two biological interactions: 1) Growth: If a Plant pixel touches Water, it absorbs the water and grows a new Plant pixel in a random adjacent empty space (simulating roots/branches). 2) Flammability: If a Plant pixel touches Fire, it instantly catches fire and transforms into Fire, allowing the flames to spread rapidly.
