@@ -7,7 +7,7 @@ const CELL_SIZE = 4;
 const WIDTH = 150; // 150 * 4 = 600px
 const HEIGHT = 100; // 100 * 4 = 400px
 
-type Cell = 0 | 1 | 2 | 3 | 4 | 5; // 0 empty, 1 sand, 2 water, 3 stone, 4 fire, 5 gas
+type Cell = 0 | 1 | 2 | 3 | 4 | 5 | 6; // 0 empty, 1 sand, 2 water, 3 stone, 4 fire, 5 gas, 6 plant
 
 export default function SandCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
