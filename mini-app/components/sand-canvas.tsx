@@ -7,7 +7,7 @@ const CELL_SIZE = 4;
 const WIDTH = 150; // 150 * 4 = 600px
 const HEIGHT = 100; // 100 * 4 = 400px
 
-type Cell = 0 | 1 | 2 | 3; // 0 empty, 1 sand, 2 water, 3 stone
+type Cell = 0 | 1 | 2 | 3 | 4; // 0 empty, 1 sand, 2 water, 3 stone, 4 fire
 
 export default function SandCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -50,7 +50,35 @@ export default function SandCanvas() {
 
   const step = () => {
     const grid = gridRef.current;
-    // Process from bottom to top
+    // Process from top to bottom for fire, bottom to top for sand/water
+    // Fire rises
+    for (let y = 0; y < HEIGHT; y++) {
+      for (let x = 0; x < WIDTH; x++) {
+        const type = grid[y][x];
+        if (type === 4) {
+          // Fire moves up
+          if (y > 0 && grid[y - 1][x] === 0) {
+            grid[y - 1][x] = 4;
+            grid[y][x] = 0;
+          } else {
+            const dirs = [ -1, 1 ];
+            for (const d of dirs) {
+              const nx = x + d;
+              if (nx >= 0 && nx < WIDTH && grid[y][nx] === 0) {
+                grid[y][nx] = 4;
+                grid[y][x] = 0;
+                break;
+              }
+            }
+          }
+          // Random decay
+          if (Math.random() < 0.01) {
+            grid[y][x] = 0;
+          }
+        }
+      }
+    }
+    // Sand and water fall
     for (let y = HEIGHT - 1; y >= 0; y--) {
       for (let x = 0; x < WIDTH; x++) {
         const type = grid[y][x];
@@ -122,6 +150,7 @@ export default function SandCanvas() {
         <Button variant={selected === 1 ? "default" : "outline"} onClick={() => setSelected(1)}>Sand</Button>
         <Button variant={selected === 2 ? "default" : "outline"} onClick={() => setSelected(2)}>Water</Button>
         <Button variant={selected === 3 ? "default" : "outline"} onClick={() => setSelected(3)}>Stone</Button>
+        <Button variant={selected === 4 ? "default" : "outline"} onClick={() => setSelected(4)}>Fire</Button>
         <Button variant={selected === 0 ? "default" : "outline"} onClick={() => setSelected(0)}>Eraser</Button>
       </div>
       <canvas
