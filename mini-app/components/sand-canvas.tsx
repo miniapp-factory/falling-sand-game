@@ -30,6 +30,7 @@ export default function SandCanvas() {
     3: "#808080", // stone
     4: "#FF4500", // fire (red/orange neon)
     5: "#ADD8E6", // gas (light blue)
+    6: "#32CD32", // plant (bright green)
   };
 
   const drawCell = (ctx: CanvasRenderingContext2D, x: number, y: number, type: Cell) => {
@@ -110,6 +111,51 @@ export default function SandCanvas() {
                 grid[y][x] = 0;
                 break;
               }
+            }
+          }
+        }
+      }
+    }
+    // Plant interactions
+    for (let y = 0; y < HEIGHT; y++) {
+      for (let x = 0; x < WIDTH; x++) {
+        const type = grid[y][x];
+        if (type === 6) { // plant
+          // Flammability: catch fire if adjacent to fire
+          const fireNeighbors = [
+            [x, y - 1],
+            [x, y + 1],
+            [x - 1, y],
+            [x + 1, y]
+          ];
+          for (const [nx, ny] of fireNeighbors) {
+            if (nx >= 0 && nx < WIDTH && ny >= 0 && ny < HEIGHT && grid[ny][nx] === 4) {
+              grid[y][x] = 4; // become fire
+              break;
+            }
+          }
+          // Growth: absorb water and grow new plant
+          const waterNeighbors = [
+            [x, y - 1],
+            [x, y + 1],
+            [x - 1, y],
+            [x + 1, y]
+          ];
+          for (const [nx, ny] of waterNeighbors) {
+            if (nx >= 0 && nx < WIDTH && ny >= 0 && ny < HEIGHT && grid[ny][nx] === 2) {
+              grid[ny][nx] = 0; // absorb water
+              // find random adjacent empty spot to grow new plant
+              const emptyNeighbors = [
+                [x, y - 1],
+                [x, y + 1],
+                [x - 1, y],
+                [x + 1, y]
+              ].filter(([ex, ey]) => ex >= 0 && ex < WIDTH && ey >= 0 && ey < HEIGHT && grid[ey][ex] === 0);
+              if (emptyNeighbors.length > 0) {
+                const [ex, ey] = emptyNeighbors[Math.floor(Math.random() * emptyNeighbors.length)];
+                grid[ey][ex] = 6;
+              }
+              break;
             }
           }
         }
