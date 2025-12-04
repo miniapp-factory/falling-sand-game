@@ -40,3 +40,15 @@
 
 # 2025-12-04 16:39:58.231938
 +introduce a Fire element (Red/Orange neon). Fire acts as a rising gas with negative gravity, moving upwards and drifting sideways to simulate flickering flames. It should have a random decay factor so pixels burn out over time. Add a corresponding button to the toolbar.
+
+# 2025-12-04 22:09:35.845846
++Modify the physics of the Fire element. It must no longer rise. Change its gravity to be positive so it falls down and flows sideways like a heavy liquid or lava.
+
+# 2025-12-04 22:09:35.846234
++Modify the physics of the Fire element. It must no longer rise. Change its gravity to be positive so it falls down and flows sideways like a heavy liquid or lava.
+
+# 2025-12-04 22:10:03.258863
++apply changes
+
+# 2025-12-04 22:10:03.259197
++apply changes
