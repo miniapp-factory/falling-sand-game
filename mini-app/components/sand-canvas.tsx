@@ -11,7 +11,15 @@ type Cell = 0 | 1 | 2 | 3; // 0 empty, 1 sand, 2 water, 3 stone
 
 export default function SandCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const gridRef = useRef<Cell[][]>(Array.from({ length: HEIGHT }, () => Array(WIDTH).fill(0)));
+  const gridRef = useRef<Cell[][]>(Array.from({ length: HEIGHT }, (_, y) =>
+    Array.from({ length: WIDTH }, (_, x) => {
+      // Create a solid stone border on all four edges
+      if (y === 0 || y === HEIGHT - 1 || x === 0 || x === WIDTH - 1) {
+        return 3; // stone
+      }
+      return 0; // empty
+    })
+  ));
   const [selected, setSelected] = useState<Cell>(1);
   const [drawing, setDrawing] = useState(false);
 
@@ -88,7 +96,9 @@ export default function SandCanvas() {
     const rect = canvasRef.current.getBoundingClientRect();
     const x = Math.floor((e.clientX - rect.left) / CELL_SIZE);
     const y = Math.floor((e.clientY - rect.top) / CELL_SIZE);
+    // Ignore any interaction with the indestructible stone border
     if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT) return;
+    if (y === 0 || y === HEIGHT - 1 || x === 0 || x === WIDTH - 1) return;
     gridRef.current[y][x] = selected;
   };
 
