@@ -52,14 +52,14 @@ export default function SandCanvas() {
   const step = () => {
     const grid = gridRef.current;
     // Process from top to bottom for fire, bottom to top for sand/water
-    // Fire rises
-    for (let y = 0; y < HEIGHT; y++) {
+    // Fire falls
+    for (let y = HEIGHT - 1; y >= 0; y--) {
       for (let x = 0; x < WIDTH; x++) {
         const type = grid[y][x];
         if (type === 4) {
-          // Fire moves up
-          if (y > 0 && grid[y - 1][x] === 0) {
-            grid[y - 1][x] = 4;
+          // Fire moves down
+          if (y + 1 < HEIGHT && grid[y + 1][x] === 0) {
+            grid[y + 1][x] = 4;
             grid[y][x] = 0;
           } else {
             const dirs = [ -1, 1 ];
