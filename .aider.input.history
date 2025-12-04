@@ -52,3 +52,9 @@
 
 # 2025-12-04 22:10:03.259197
 +apply changes
+
+# 2025-12-04 22:15:49.743868
++Create the water cycle logic. First, interaction: If Fire touches Water, transform the Water into Gas (evaporation). Second, condensation: If rising Gas touches the indestructible Wall border at the top of the canvas, transform it back into Water.
+
+# 2025-12-04 22:15:49.744996
++Create the water cycle logic. First, interaction: If Fire touches Water, transform the Water into Gas (evaporation). Second, condensation: If rising Gas touches the indestructible Wall border at the top of the canvas, transform it back into Water.
