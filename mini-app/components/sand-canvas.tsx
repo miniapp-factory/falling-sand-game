@@ -7,7 +7,7 @@ const CELL_SIZE = 4;
 const WIDTH = 150; // 150 * 4 = 600px
 const HEIGHT = 100; // 100 * 4 = 400px
 
-type Cell = 0 | 1 | 2 | 3 | 4; // 0 empty, 1 sand, 2 water, 3 stone, 4 fire
+type Cell = 0 | 1 | 2 | 3 | 4 | 5; // 0 empty, 1 sand, 2 water, 3 stone, 4 fire, 5 gas
 
 export default function SandCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -51,8 +51,7 @@ export default function SandCanvas() {
 
   const step = () => {
     const grid = gridRef.current;
-    // Process from top to bottom for fire, bottom to top for sand/water
-    // Fire falls
+    // Fire falls and evaporates adjacent water
     for (let y = HEIGHT - 1; y >= 0; y--) {
       for (let x = 0; x < WIDTH; x++) {
         const type = grid[y][x];
@@ -72,9 +71,45 @@ export default function SandCanvas() {
               }
             }
           }
+          // Evaporate adjacent water
+          const neighbors = [
+            [x, y - 1],
+            [x, y + 1],
+            [x - 1, y],
+            [x + 1, y]
+          ];
+          for (const [nx, ny] of neighbors) {
+            if (nx >= 0 && nx < WIDTH && ny >= 0 && ny < HEIGHT && grid[ny][nx] === 2) {
+              grid[ny][nx] = 5; // gas
+            }
+          }
           // Random decay
           if (Math.random() < 0.01) {
             grid[y][x] = 0;
+          }
+        }
+      }
+    }
+    // Gas rises and condenses at top
+    const copy = grid.map(row => [...row]);
+    for (let y = 0; y < HEIGHT; y++) {
+      for (let x = 0; x < WIDTH; x++) {
+        if (copy[y][x] === 5) {
+          if (y === 0) {
+            grid[y][x] = 2; // condense to water
+          } else if (grid[y - 1][x] === 0) {
+            grid[y - 1][x] = 5;
+            grid[y][x] = 0;
+          } else {
+            const dirs = [ -1, 1 ];
+            for (const d of dirs) {
+              const nx = x + d;
+              if (nx >= 0 && nx < WIDTH && grid[y][nx] === 0) {
+                grid[y][nx] = 5;
+                grid[y][x] = 0;
+                break;
+              }
+            }
           }
         }
       }
