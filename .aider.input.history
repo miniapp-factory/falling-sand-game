@@ -28,3 +28,9 @@
 
 # 2025-12-04 16:29:51.934985
 +apply changes
+
+# 2025-12-04 16:34:31.448871
++update the simulation to initialize a solid Stone border along all four edges of the canvas. This border must be strictly indestructible and irreplaceable: modify the user interaction logic to ensure that painting or erasing simply ignores any pixel identified as part of this boundary wall.
+
+# 2025-12-04 16:34:31.449228
++update the simulation to initialize a solid Stone border along all four edges of the canvas. This border must be strictly indestructible and irreplaceable: modify the user interaction logic to ensure that painting or erasing simply ignores any pixel identified as part of this boundary wall.
