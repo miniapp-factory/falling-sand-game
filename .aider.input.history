@@ -34,3 +34,9 @@
 
 # 2025-12-04 16:34:31.449228
 +update the simulation to initialize a solid Stone border along all four edges of the canvas. This border must be strictly indestructible and irreplaceable: modify the user interaction logic to ensure that painting or erasing simply ignores any pixel identified as part of this boundary wall.
+
+# 2025-12-04 16:39:58.231454
++introduce a Fire element (Red/Orange neon). Fire acts as a rising gas with negative gravity, moving upwards and drifting sideways to simulate flickering flames. It should have a random decay factor so pixels burn out over time. Add a corresponding button to the toolbar.
+
+# 2025-12-04 16:39:58.231938
++introduce a Fire element (Red/Orange neon). Fire acts as a rising gas with negative gravity, moving upwards and drifting sideways to simulate flickering flames. It should have a random decay factor so pixels burn out over time. Add a corresponding button to the toolbar.
