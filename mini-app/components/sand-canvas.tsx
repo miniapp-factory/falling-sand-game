@@ -28,6 +28,7 @@ export default function SandCanvas() {
     1: "#FFD700", // sand
     2: "#1E90FF", // water
     3: "#808080", // stone
+    4: "#FF4500", // fire (red/orange neon)
   };
 
   const drawCell = (ctx: CanvasRenderingContext2D, x: number, y: number, type: Cell) => {
